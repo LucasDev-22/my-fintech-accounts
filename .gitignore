@@ -41,3 +41,5 @@ docker-data/
 # Security (Spring Boot)
 .env
 *.properties.local
+
+e08dcafe52eaf0b5cfa5130b6eb258e380d02b70
