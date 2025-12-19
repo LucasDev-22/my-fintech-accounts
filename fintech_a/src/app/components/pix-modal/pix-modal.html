@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Enviar PIX 💸</h2>
+
+<mat-dialog-content>
+  <p>Informe os dados do recebedor abaixo:</p>
+
+  <div class="pix-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Chave PIX (CPF, E-mail ou Celular)</mat-label>
+      <input matInput placeholder="Ex: boss@bank.com">
+      <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" placeholder="0,00">
+      <span matTextPrefix>R$ &nbsp;</span>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" (click)="confirmarPagamento()">Confirmar Pagamento</button>
+</mat-dialog-actions>
