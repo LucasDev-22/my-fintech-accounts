@@ -1,0 +1,61 @@
+.cards-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.balance-card {
+  flex: 2;
+  background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+  color: white;
+  min-width: 300px;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+
+  h2 { margin: 0; }
+
+  button {
+    color: #666;
+  }
+}
+
+.amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+  transition: all 0.3s ease; /* Transição suave ao trocar */
+}
+
+.hidden-amount {
+  letter-spacing: 4px; /* Afasta os pontos para parecer saldo oculto real */
+  opacity: 0.8;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+
+  .icon-bg {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  .details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .value {
+    font-weight: bold;
+  }
+}
