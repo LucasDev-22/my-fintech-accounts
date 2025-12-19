@@ -5,6 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Entity // Diz ao Java que isso é uma tabela no banco de dados
+@Table(name = "tb_accounts")
 @Data // O Lombok cria Getters e Setters automaticamente para nós
 public class Account {
 
@@ -12,7 +13,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String holderName; // Nome do dono da conta
+    @Column(nullable = false)
+    private String owner;
 
+    @Column(nullable = false)
     private BigDecimal balance; // Saldo (usamos BigDecimal pra dinheiro, nunca Float ou Double!)
+
 }
