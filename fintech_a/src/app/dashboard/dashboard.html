@@ -11,7 +11,7 @@
       </mat-card-header>
       <mat-card-content>
         @if (exibirSaldo()) {
-          <h1 class="amount">{{ saldo() | currency:'BRL' }}</h1>
+          <h1 class="amount">{{ saldo() | currency:'BRL':'symbol':'1.2-2' }}</h1>
         } @else {
           <h1 class="amount hidden-amount">R$ •••••••</h1>
         }
@@ -33,10 +33,11 @@
         <mat-icon class="icon-bg">{{ item.icon }}</mat-icon>
         <div class="details">
           <strong>{{ item.loja }}</strong>
-          <span>{{ item.data }}</span>
+          <span>{{ item.data | date:'dd/MM/yyyy HH:mm' }}</span>
         </div>
-        <div class="value" [style.color]="item.valor > 0 ? 'green' : 'black'">
-          {{ item.valor | currency:'BRL' }}
+
+        <div class="value" [style.color]="item.valor > 0 ? '#2e7d32' : '#d32f2f'">
+          {{ item.valor | currency:'BRL':'symbol':'1.2-2' }}
         </div>
       </div>
     }

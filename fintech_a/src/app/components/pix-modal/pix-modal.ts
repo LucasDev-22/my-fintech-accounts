@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { Account } from '../../services/account';
+import { AccountService } from '../../services/account';
 
 @Component({
   selector: 'app-pix-modal',
@@ -40,23 +40,11 @@ import { Account } from '../../services/account';
   styles: `.full-width { width: 100%; margin-top: 10px; }`
 })
 export class PixModal {
-  private accountService = inject(Account);
+  private accountService = inject(AccountService);
   private dialogRef = inject(MatDialogRef<PixModal>);
 
-  // Inicia como undefined para o input ficar vazio (sem o 0)
   valor: number | undefined;
   destino: string = '';
-
-  // Função para bloquear letras e caracteres especiais no input de valor
-  apenasNumeros(event: KeyboardEvent) {
-    const permitidos = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete', '.', ','];
-    if (permitidos.includes(event.key)) return;
-
-    // Bloqueia se não for número
-    if (isNaN(Number(event.key)) || event.code === 'Space') {
-      event.preventDefault();
-    }
-  }
 
   confirmar() {
     if (this.valor && this.valor > 0 && this.destino) {
@@ -67,5 +55,13 @@ export class PixModal {
 
   fechar() {
     this.dialogRef.close();
+  }
+
+  apenasNumeros(event: KeyboardEvent) {
+    const permitidos = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete', '.', ','];
+    if (permitidos.includes(event.key)) return;
+    if (isNaN(Number(event.key)) || event.code === 'Space') {
+      event.preventDefault();
+    }
   }
 }

@@ -1,0 +1,57 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+
+    <div class="brand-header">
+      <div class="logo-wrapper">
+        <svg class="brand-logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5V11C4 16.19 7.41 21.05 12 22C16.59 21.05 20 16.19 20 11V5L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 12L12 17M9 15L12 12L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">Boss Bank</span>
+      </div>
+    </div>
+
+    <mat-nav-list class="nav-links">
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <a mat-list-item href="#">
+        <mat-icon matListItemIcon>account_balance_wallet</mat-icon>
+        <span matListItemTitle>Extrato</span>
+      </a>
+      <a mat-list-item href="#">
+        <mat-icon matListItemIcon>credit_card</mat-icon>
+        <span matListItemTitle>Meus Cartões</span>
+      </a>
+      <a mat-list-item href="#">
+        <mat-icon matListItemIcon>settings</mat-icon>
+        <span matListItemTitle>Configurações</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar class="top-header">
+      <button type="button" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="page-title">Dashboard</span>
+
+      <span class="spacer"></span>
+
+      <button mat-icon-button><mat-icon>search</mat-icon></button>
+      <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+      <div class="user-profile">
+        <img src="https://ui-avatars.com/api/?name=Lucas" alt="User">
+      </div>
+    </mat-toolbar>
+
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

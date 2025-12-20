@@ -1,0 +1,86 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+/* --- SIDEBAR ESTILO 'DARK PREMIUM' --- */
+.sidenav {
+  width: 260px;
+  background-color: #1a237e; /* Azul Escuro (Indigo) como na imagem */
+  color: white;
+  border: none;
+
+  .brand-header {
+    height: 64px;
+    background-color: #1a237e; /* Azul Marinho Profundo */
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo-svg {
+    height: 32px;
+    width: 32px;
+    /* O SVG já está configurado com stroke="white" no HTML */
+  }
+
+  .brand-name {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .nav-links {
+    padding-top: 15px;
+
+    mat-icon { color: rgba(255,255,255,0.7); }
+    span { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    .active-link {
+      background-color: rgba(255,255,255,0.1) !important;
+      border-left: 4px solid #fff;
+    }
+  }
+}
+
+/* --- HEADER SUPERIOR (TOP BAR) --- */
+.top-header {
+  background-color: white !important;
+  color: #333 !important;
+  height: 64px !important;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra suave */
+  z-index: 10;
+
+  .page-title {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  .user-profile img {
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 15px;
+    border: 2px solid #eee;
+  }
+}
+
+/* --- ÁREA DE CONTEÚDO --- */
+.content-body {
+  padding: 30px;
+  background-color: #f8f9fa; /* Cinza bem claro como na imagem */
+  min-height: calc(100vh - 64px);
+}
