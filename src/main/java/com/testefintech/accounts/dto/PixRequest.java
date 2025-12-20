@@ -1,4 +1,8 @@
 package com.testefintech.accounts.dto;
 
-public class PixRequest {
-}
+import java.math.BigDecimal;
+
+public record PixRequest(
+        BigDecimal valor,
+        String destino
+) {}

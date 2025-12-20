@@ -1,4 +1,9 @@
 package com.testefintech.accounts.dto;
 
-public record PixDTO() {
-}
+import java.math.BigDecimal;
+
+public record PixDTO(
+   Long accountId,
+   BigDecimal valor,
+   String destino
+) {}
