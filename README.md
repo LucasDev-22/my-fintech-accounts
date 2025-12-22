@@ -1,53 +1,50 @@
-# 💸 MyFintech API - Sistema de Microsserviços para Carteira Digital
+# 🏦💸 BOSS BANK - Backend API (MyFintech) ☕
 
-Este projeto evoluiu de um simples microsserviço de contas para uma plataforma funcional de transferências via PIX, com persistência real de dados.
+Este é o motor de regras de negócios e segurança do **BOSS BANK**, uma API REST robusta construída com Java e Spring Boot para gerenciar contas, autenticação e transações financeiras em tempo real.
 
-> **Status do Projeto:** Em desenvolvimento 🚀
-> **Fase 2:** Transações e Persistência (Concluído: Débito em Conta e Integração Front/Back)
+> **Status do Projeto:** Fase 3 - Segurança JWT, Banco de Dados e Lógica de Negócios (Concluído) ✅
 
-## 🛠️ Tecnologias Utilizadas
-
+## 🛠️ Tecnologias Utilizadas ⚙️
 * **Java 21** & **Spring Boot 3**
-* **Spring Data JPA**
-* **PostgreSQL 15** (Rodando via Docker)
-* **pgAdmin 4** (Interface visual para o banco)
-* **Lombok** & **Maven**
-* **Docker & Docker Compose**
+* **Spring Security**: Camada de proteção contra ataques e controle de acesso.
+* **JWT (JSON Web Token)**: Autenticação Stateless segura.
+* **Spring Data JPA**: Abstração de persistência de dados.
+* **PostgreSQL 15**: Banco de dados relacional (Docker).
+* **Lombok**: Redução de boilerplate code.
+* **Docker Compose**: Orquestração do ambiente de banco de dados.
 
-## 🏗️ Arquitetura
+## 🏗️ Arquitetura de Segurança
+O projeto implementa uma cadeia de filtros de segurança (`SecurityFilterChain`) que:
+1.  **Intercepta** todas as requisições HTTP.
+2.  **Verifica** a presença e validade do Token JWT no Header `Authorization`.
+3.  **Identifica** o usuário (ex: Lucas) e libera o acesso aos dados apenas dele.
+4.  **Bloqueia** (403 Forbidden) qualquer tentativa de acesso não autorizado.
 
-O projeto segue o padrão de **Camadas**:
-1.  **Controller:** Porta de entrada da API (REST).
-2.  **Service:** Onde residem as regras de negócio.
-3.  **Repository:** Interface de comunicação com o banco de dados.
-4.  **Model:** Definição das entidades de dados.
+## 📌 Endpoints Principais
 
-## 🚀 Como Executar o Projeto
+### 🔐 Autenticação (Públicos)
+* `POST /auth/login`: Recebe e-mail/senha e retorna um **Token JWT** válido.
+* `POST /auth/register`: (Em desenvolvimento) Criação de novos correntistas.
 
-1.  Clone o repositório.
-2.  Certifique-se de ter o **Docker** instalado.
-3.  Na raiz do projeto, suba o banco de dados:
+### 💰 Conta & Transações (Protegidos)
+> *Requer Header: `Authorization: Bearer <seu_token>`*
+
+* `GET /accounts/dashboard`: Retorna o **Saldo** atual e a lista de **Últimas Transações** do usuário logado.
+* `POST /accounts/pix`: Realiza transferência bancária.
+    * *Novo Payload (Seguro):* `{"valor": 50.00, "destino": "Cafeteria"}`
+    * *Nota:* O pagador é identificado automaticamente pelo Token, eliminando fraudes de ID.
+
+## 🚀 Como Executar o Backend
+1.  Certifique-se de que o **Docker** está rodando.
+2.  Suba o banco de dados:
     ```bash
     docker compose up -d
     ```
-4.  Execute a aplicação via terminal ou IDE:
+3.  Execute a aplicação:
     ```bash
     ./mvnw spring-boot:run
     ```
-5.  A API estará disponível em.
-    ```bash
-    http://localhost:8080/accounts
-    ```
-
-## ⚙️ O que já funciona?
-1.  **Criação e Consulta de Contas:** Gerenciamento de saldo inicial.
-2.  **Motor de PIX:** Lógica de negócio para validar saldo e realizar débitos automáticos.
-3.  **Arquitetura Reativa:** Interface Angular que atualiza o saldo sem necessidade de recarregar a página.
-
-## 📌 Endpoints Atualizados
-* `GET /accounts/{id}`: Consulta detalhada da conta e saldo atual.
-* `POST /accounts/pix`: Realiza uma transferência (Débito e Registro de Transação).
-    * *Payload:* `{"accountId": 1, "valor": 1000.00, "destino": "Boss Burguer"}`
+4.  A API estará rodando em `http://localhost:8080`.
 
 ## 🤝 Parceria Fullstack
 Desenvolvido por **Lucas Gabriel** em parceria estratégica com a **Gemini IA**, focando em clean code e arquitetura resiliente.
