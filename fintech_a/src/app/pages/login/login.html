@@ -1,36 +1,53 @@
-<div class="login-container">
-  <div class="card">
-    <h2>🔐 Acesso BOSS BANK</h2>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <div class="card-header">
+      <mat-icon class="logo-icon">account_balance_wallet</mat-icon>
+      <h2>Acesso BOSS BANK</h2>
+      <p>Gerencie suas finanças com segurança</p>
+    </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="seu@email.com"
-        >
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="ex: lucas@email.com">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            E-mail é obrigatório
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            E-mail inválido
+          </mat-error>
+        </mat-form-field>
 
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input
-          id="password"
-          type="password"
-          formControlName="password"
-          placeholder="******"
-        >
-      </div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Senha é obrigatória
+          </mat-error>
+        </mat-form-field>
 
-      <div *ngIf="errorMessage" class="error-msg">
-        {{ errorMessage }}
-      </div>
+        <div class="error-box" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
 
-      <button type="submit" [disabled]="loginForm.invalid">
-        ENTRAR
-      </button>
-    </form>
-  </div>
+        <div class="forgot-password">
+          <a href="#">Esqueci minha senha</a>
+        </div>
+
+        <button mat-flat-button color="primary" class="btn-large" type="submit" [disabled]="loginForm.invalid">
+          ENTRAR NA CONTA
+        </button>
+
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <p>Ainda não é cliente?</p>
+      <a mat-stroked-button color="primary" routerLink="/register">CRIAR CONTA GRÁTIS</a>
+    </mat-card-footer>
+  </mat-card>
 </div>

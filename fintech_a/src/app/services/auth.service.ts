@@ -11,6 +11,18 @@ export class AuthService {
   private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
 
+  register(name: string, email: string, password: string) {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/register`, {
+      name,
+      email,
+      password,
+    }).pipe(
+      tap(response => {
+        localStorage.setItem('auth-token', response.token);
+      })
+    )
+  }
+
   login(email: string, password: string) {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(

@@ -1,45 +1,84 @@
-<div class="dashboard-container">
-  <h2>Olá, Lucas! 👋</h2>
-  <button mat-icon-button (click)="toggleSaldo()" title="Ocultar/Exibir Saldo">
-    <mat-icon>{{ exibirSaldo() ? 'visibility' : 'visibility_off' }}</mat-icon>
-  </button>
+<div class="dashboard-layout">
 
-  <div class="cards-grid">
-    <mat-card class="balance-card">
-      <mat-card-header>
-        <mat-card-title>Saldo Total</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        @if (exibirSaldo()) {
-          <h1 class="amount">{{ saldo() | currency:'BRL':'symbol':'1.2-2' }}</h1>
-        } @else {
-          <h1 class="amount hidden-amount">R$ •••••••</h1>
-        }
-      </mat-card-content>
-    </mat-card>
+  <main class="main-content">
 
-    <mat-card class="action-card" (click)="abrirPagamentoPix()" style="cursor: pointer;">
-      <mat-card-content>
-        <mat-icon color="primary">qr_code_2</mat-icon>
-        <p>Pagar com PIX</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+    <header class="top-bar">
+      <h2>Dashboard</h2>
 
-  <h3 style="margin-top: 32px;">Últimas Transações</h3>
-  <mat-card class="transactions-card">
-    @for (item of recentes(); track item.id) {
-      <div class="transaction-item">
-        <mat-icon class="icon-bg">{{ item.icon }}</mat-icon>
-        <div class="details">
-          <strong>{{ item.loja }}</strong>
-          <span>{{ item.data | date:'dd/MM/yyyy HH:mm' }}</span>
-        </div>
+      <div class="user-actions">
+        <button mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>notifications</mat-icon>
+        </button>
 
-        <div class="value" [style.color]="item.valor > 0 ? '#2e7d32' : '#d32f2f'">
-          {{ item.valor | currency:'BRL':'symbol':'1.2-2' }}
-        </div>
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="avatar-btn">
+          <div class="avatar-circle">LU</div>
+        </button>
+
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Minha Conta</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="sair()">
+            <mat-icon color="warn">logout</mat-icon>
+            <span>Sair</span>
+          </button>
+        </mat-menu>
       </div>
-    }
-  </mat-card>
+    </header>
+
+    <div class="dashboard-container">
+      <div class="welcome-section">
+        <h2>Olá, Lucas! 👋</h2>
+        <button mat-icon-button (click)="toggleSaldo()">
+          <mat-icon>{{ exibirSaldo() ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      </div>
+
+      <div class="cards-grid">
+        <mat-card class="balance-card">
+          <mat-card-header>
+            <mat-card-title>Saldo Total</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            @if (exibirSaldo()) {
+              <h1 class="amount">{{ saldo() | currency:'BRL':'symbol':'1.2-2' }}</h1>
+            } @else {
+              <h1 class="amount hidden-amount">R$ •••••••</h1>
+            }
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="action-card" (click)="abrirPagamentoPix()">
+          <mat-card-content>
+            <mat-icon>qr_code_2</mat-icon>
+            <p>Pagar com PIX</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <h3 class="section-title">Últimas Transações</h3>
+      <mat-card class="transactions-list">
+        @for (item of recentes(); track item.id) {
+          <div class="transaction-item">
+            <div class="icon-box">
+              <mat-icon>{{ item.icon }}</mat-icon>
+            </div>
+            <div class="details">
+              <strong>{{ item.loja }}</strong>
+              <small>{{ item.data | date:'dd/MM/yyyy HH:mm' }}</small>
+            </div>
+            <div class="value" [class.negative]="item.valor < 0" [class.positive]="item.valor > 0">
+              {{ item.valor | currency:'BRL':'symbol':'1.2-2' }}
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+        }
+      </mat-card>
+    </div>
+  </main>
 </div>

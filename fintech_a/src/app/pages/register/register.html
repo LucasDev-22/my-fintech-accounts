@@ -1,0 +1,33 @@
+<div class="login-container"> <mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>🚀 Crie sua conta</mat-card-title>
+    <mat-card-subtitle>Comece com R$ 100,00 de bônus!</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form (submit)="fazerCadastro()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" type="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput [ngModel]="password()" (ngModelChange)="password.set($event)" name="password" type="password">
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit">CADASTRAR E ENTRAR</button>
+        <a routerLink="/login" mat-button>Já tenho conta</a>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
+</div>

@@ -1,0 +1,48 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #1a237e; /* Azulão Boss Bank */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+  box-sizing: border-box;
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 1.5rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    mat-icon { font-size: 2rem; width: 2rem; height: 2rem; }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 1.5rem;
+      color: #bbdefb; /* Azul claro */
+      text-decoration: none;
+      transition: all 0.2s;
+      border-left: 4px solid transparent;
+
+      &:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: white;
+      }
+
+      &.active {
+        background-color: rgba(255,255,255,0.15);
+        color: white;
+        border-left-color: #ffca28; /* Detalhe amarelo */
+      }
+    }
+  }
+}

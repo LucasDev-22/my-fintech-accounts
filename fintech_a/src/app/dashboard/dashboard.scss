@@ -1,61 +1,111 @@
-.cards-grid {
+/* Layout Geral: Sidebar fixa + Conteúdo */
+.dashboard-layout {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  height: 100vh;
+  background-color: #f5f7fa;
 }
 
-.balance-card {
-  flex: 2;
-  background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
-  color: white;
-  min-width: 300px;
+/* Área Direita (Ocupa o resto da tela) */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Permite rolar se tiver muitas transações */
 }
 
-.header-row {
+/* Barra do Topo */
+.top-bar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
-
-  h2 { margin: 0; }
-
-  button {
-    color: #666;
-  }
-}
-
-.amount {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 10px 0;
-  transition: all 0.3s ease; /* Transição suave ao trocar */
-}
-
-.hidden-amount {
-  letter-spacing: 4px; /* Afasta os pontos para parecer saldo oculto real */
-  opacity: 0.8;
-}
-
-.transaction-item {
-  display: flex;
-  align-items: center;
-  padding: 16px;
+  padding: 1rem 2rem;
+  background-color: white;
   border-bottom: 1px solid #eee;
 
-  .icon-bg {
-    background: #f0f0f0;
-    padding: 10px;
-    border-radius: 50%;
-    margin-right: 15px;
-  }
+  h2 { margin: 0; color: #1a237e; font-weight: 700; }
 
-  .details {
-    flex-grow: 1;
+  .user-actions {
     display: flex;
-    flex-direction: column;
-  }
+    align-items: center;
+    gap: 0.5rem;
 
-  .value {
-    font-weight: bold;
+    .avatar-btn {
+      margin-left: 0.5rem;
+    }
+
+    .avatar-circle {
+      width: 36px; height: 36px;
+      background: #e0e0e0;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: 0.9rem; color: #555;
+    }
+  }
+}
+
+/* Área de Conteúdo Interno (Onde ficam os cards) */
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.welcome-section {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+}
+
+/* Grid dos Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Cartão de saldo maior */
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Cartão de Saldo (Estilo Azulão) */
+.balance-card {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  color: white;
+
+  .mat-card-header { padding-bottom: 0; }
+  .mat-card-title { color: #bbdefb; font-size: 1rem; }
+  .amount { font-size: 2.5rem; margin: 1rem 0; font-weight: 700; }
+}
+
+/* Cartão de Ação (PIX) */
+.action-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+
+  &:hover { transform: translateY(-3px); }
+
+  mat-icon { font-size: 2rem; width: 2rem; height: 2rem; margin-bottom: 0.5rem; }
+  p { margin: 0; font-weight: 500; }
+}
+
+/* Lista de Transações */
+.transactions-list {
+  padding: 0; /* Remove padding padrão do card */
+
+  .transaction-item {
+    display: flex; align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+
+    .icon-box {
+      width: 40px; height: 40px;
+      background: #f0f2f5; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: #555;
+    }
+
+    .details { flex: 1; display: flex; flex-direction: column; }
+    .details small { color: #888; margin-top: 2px; }
+
+    .value { font-weight: 600; font-size: 1rem; }
+    .value.positive { color: #2e7d32; }
+    .value.negative { color: #d32f2f; }
   }
 }
