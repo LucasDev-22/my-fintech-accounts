@@ -1,8 +1,11 @@
 package com.testefintech.accounts.controller;
 
-import com.testefintech.accounts.model.User;
+import com.testefintech.accounts.dto.AuthenticationResponse;
+import com.testefintech.accounts.dto.RegisterRequest;
 import com.testefintech.accounts.service.AuthService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 @RestController
@@ -17,21 +20,17 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public User register(@RequestBody Map<String, String> body) {
-
-        String email = body.get("email");
-        String password = body.get("password");
-
-        return authService.register(email, password);
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody Map<String, String> credentials) {
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody Map<String, String> credentials) {
         String email = credentials.get("email");
         String password = credentials.get("password");
 
         String token = authService.login(email, password);
 
-        return Map.of("token", token);
+        return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 }

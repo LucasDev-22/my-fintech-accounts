@@ -1,19 +1,26 @@
 package com.testefintech.accounts.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // Diz ao Java que isso é uma tabela no banco de dados
+@Entity
 @Table(name = "tb_accounts")
-@Data // O Lombok cria Getters e Setters automaticamente para nós
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String owner;
     private BigDecimal balance;
 
     @OneToOne

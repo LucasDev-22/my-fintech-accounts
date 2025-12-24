@@ -1,4 +1,8 @@
 package com.testefintech.accounts.model;
 
-public class PixKeyType {
+public enum PixKeyType {
+    CPF,
+    EMAIL,
+    TELEFONE,
+    ALEATORIA
 }

@@ -1,4 +1,7 @@
 package com.testefintech.accounts.dto;
 
-public record RegisterRequest() {
-}
+public record RegisterRequest(
+        String name,
+        String email,
+        String password
+) {}

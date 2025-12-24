@@ -1,4 +1,3 @@
 package com.testefintech.accounts.dto;
 
-public record AuthenticationResponse() {
-}
+public record AuthenticationResponse(String token) {}

@@ -46,5 +46,5 @@ O projeto implementa uma cadeia de filtros de segurança (`SecurityFilterChain`)
     ```
 4.  A API estará rodando em `http://localhost:8080`.
 
-## 🤝 Parceria Fullstack
-Desenvolvido por **Lucas Gabriel** em parceria estratégica com a **Gemini IA**, focando em clean code e arquitetura resiliente.
+
+Desenvolvido por **Lucas Gabriel**
