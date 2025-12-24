@@ -33,4 +33,4 @@ Este é o módulo de interface do usuário do **BOSS BANK**, desenvolvido com as
 
 2. Acesse http://localhost:4200 (Você será redirecionado para o Login).
 
-Desenvolvido por **Lucas Gabriel** com suporte estratégico da **Gemini IA**.
+Desenvolvido por **Lucas Gabriel**
