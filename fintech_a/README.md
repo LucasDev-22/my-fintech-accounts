@@ -2,35 +2,35 @@
 
 Este é o módulo de interface do usuário do **BOSS BANK**, desenvolvido com as tecnologias mais modernas do ecossistema Angular para proporcionar uma experiência financeira fluida, segura e reativa.
 
-> **Status do Projeto:** Fase 3 - Segurança JWT, Integração Real e AuthGuard (Concluído) ✅
+**Interface moderna e reativa para Internet Banking, focada em UX e performance.**
 
 ## 🛠️ Tecnologias Utilizadas
-* **Angular 18+**: Utilizando **Signals** para gerenciamento de estado reativo de altíssima performance.
-* **Angular Material**: Componentes de UI modernos e acessíveis.
-* **HTTP Interceptors**: Injeção automática de tokens JWT em todas as requisições.
-* **AuthGuard**: Proteção de rotas (Dashboard inacessível sem login).
-* **SCSS**: Estilização avançada e modular.
 
-## ✨ Funcionalidades Implementadas
-1.  **Autenticação Segura**: Tela de Login integrada com Spring Security via Tokens JWT.
-2.  **Dashboard Vivo**: Saldo e extrato consumidos diretamente do banco de dados PostgreSQL.
-3.  **Proteção de Rotas**: Redirecionamento automático para login caso o token seja inválido ou inexistente.
-4.  **Sistema de PIX Real**: O valor debitado reflete instantaneamente no banco de dados e atualiza a interface via Signals.
-5.  **Extrato Dinâmico**: Histórico de transações persistente, trazido do backend em tempo real.
+* **Angular 17+** (Standalone Components)
+* **Angular Material** (UI Kit Profissional)
+* **Signals** (Gerenciamento de Estado Reativo)
+* **SSR Blindado** (Compatibilidade com Server-Side Rendering)
+* **SCSS** (Estilização avançada)
 
-## 🚀 Como Executar o Front-end
+## 🎨 Funcionalidades
 
-### Pré-requisitos
-* Node.js (versão 18 ou superior)
-* Angular CLI instalado globalmente (`npm install -g @angular/cli`)
+* [x] Dashboard com atualização em tempo real.
+* [x] Upload de Foto de Perfil (Preview instantâneo).
+* [x] Edição de Perfil (Modal interativo).
+* [x] Sistema de Login/Logout com persistência segura.
+* [x] Formulário de Cadastro com Upload de Documentos.
+* [ ] Visualização de Cartões Virtuais (Em breve).
 
-### Instalação
-1. Entre na pasta do projeto:
-   ```bash
-   cd fintech_a
-   npm install
-   ng serve
+## 🛠️ Como Rodar
 
-2. Acesse http://localhost:4200 (Você será redirecionado para o Login).
+1.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+2.  Inicie o servidor de desenvolvimento:
+    ```bash
+    ng serve
+    ```
+3.  Acesse: `http://localhost:4200`
 
 Desenvolvido por **Lucas Gabriel**

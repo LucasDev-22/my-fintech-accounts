@@ -9,6 +9,12 @@ export interface Transaction {
   data: string;
 }
 
+export interface UserUpdateRequest {
+  name: string;
+  phone: string;
+  profileImage: string;
+}
+
 interface DashboardResponse {
   balance: number;
   transactions: Transaction[];
@@ -17,9 +23,12 @@ interface DashboardResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class AccountService { // Nome correto: AccountService
+export class AccountService {
   private http = inject(HttpClient);
+
+  // URL base para contas
   private readonly API_URL = 'http://localhost:8080/accounts';
+  private readonly USER_API_URL = 'http://localhost:8080/users';
 
   private _saldo = signal<number>(0);
   private _transacoes = signal<Transaction[]>([]);
@@ -33,7 +42,7 @@ export class AccountService { // Nome correto: AccountService
         this._saldo.set(data.balance);
         this._transacoes.set(data.transactions);
       },
-      error: (err) => console.error('Erro ao dashboard', err)
+      error: (err) => console.error('Erro ao carregar dashboard', err)
     });
   }
 
@@ -42,6 +51,14 @@ export class AccountService { // Nome correto: AccountService
     this.http.post(`${this.API_URL}/pix`, pixData, { responseType: 'text' })
       .subscribe(() => {
         this.carregarDados();
-      })
+      });
+  }
+
+  updateUser(email: string, dados: UserUpdateRequest) {
+    return this.http.put(`${this.USER_API_URL}/update?email=${email}`, dados);
+  }
+
+  getUser(email: string) {
+    return this.http.get<UserUpdateRequest>(`${this.USER_API_URL}/me?email=${email}`);
   }
 }

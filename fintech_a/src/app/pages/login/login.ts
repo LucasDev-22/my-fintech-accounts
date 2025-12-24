@@ -44,12 +44,11 @@ export class Login {
       const { email, password } = this.loginForm.value;
 
       this.authService.login(email, password).subscribe({
-        next: () => {
-          // Sucesso! Redireciona para o painel principal
+        next: (token) => {
+          localStorage.setItem('user-email', email);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          // Erro! Mostra mensagem na tela
           console.error('Erro no login', err);
           this.errorMessage = 'E-mail ou senha inválidos!';
         }

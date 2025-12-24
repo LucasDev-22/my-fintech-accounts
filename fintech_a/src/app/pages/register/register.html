@@ -1,33 +1,70 @@
-<div class="login-container"> <mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>🚀 Crie sua conta</mat-card-title>
-    <mat-card-subtitle>Comece com R$ 100,00 de bônus!</mat-card-subtitle>
-  </mat-card-header>
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>🚀 Abra sua conta Boss</mat-card-title>
+      <mat-card-subtitle>Cadastro completo e seguro</mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content>
-    <form (submit)="fazerCadastro()">
+    <mat-card-content>
+      <form class="form-grid">
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nome Completo</mat-label>
-        <input matInput [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" type="text">
-      </mat-form-field>
+        <h3>Dados Pessoais</h3>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>E-mail</mat-label>
-        <input matInput [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" type="email">
-      </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome Completo</mat-label>
+          <input matInput [(ngModel)]="form.name" name="name" required>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Senha</mat-label>
-        <input matInput [ngModel]="password()" (ngModelChange)="password.set($event)" name="password" type="password">
-      </mat-form-field>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput [(ngModel)]="form.cpf" name="cpf" placeholder="000.000.000-00" required>
+          </mat-form-field>
 
-      <div class="actions">
-        <button mat-raised-button color="primary" type="submit">CADASTRAR E ENTRAR</button>
-        <a routerLink="/login" mat-button>Já tenho conta</a>
-      </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput type="date" [(ngModel)]="form.birthDate" name="birthDate" required>
+          </mat-form-field>
+        </div>
 
-    </form>
-  </mat-card-content>
-</mat-card>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" [(ngModel)]="form.email" name="email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" [(ngModel)]="form.password" name="password" required>
+        </mat-form-field>
+
+        <h3>Fotos do Documento (RG ou CNH)</h3>
+
+        <div class="docs-area">
+          <div class="doc-upload" (click)="frontInput.click()">
+            <div class="preview" *ngIf="form.documentFront" [style.backgroundImage]="'url(' + form.documentFront + ')'"></div>
+            <div class="placeholder" *ngIf="!form.documentFront">
+              <mat-icon>branding_watermark</mat-icon>
+              <span>Frente</span>
+            </div>
+            <input #frontInput type="file" (change)="processFile($event, 'documentFront')" hidden accept="image/*">
+          </div>
+
+          <div class="doc-upload" (click)="backInput.click()">
+            <div class="preview" *ngIf="form.documentBack" [style.backgroundImage]="'url(' + form.documentBack + ')'"></div>
+            <div class="placeholder" *ngIf="!form.documentBack">
+              <mat-icon>style</mat-icon>
+              <span>Verso</span>
+            </div>
+            <input #backInput type="file" (change)="processFile($event, 'documentBack')" hidden accept="image/*">
+          </div>
+        </div>
+
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <a routerLink="/login" mat-button>Já tenho conta</a>
+      <button mat-flat-button color="primary" (click)="fazerCadastro()">FINALIZAR CADASTRO</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
