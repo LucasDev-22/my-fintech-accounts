@@ -21,7 +21,7 @@ Este é o módulo de interface do usuário do **BOSS BANK**, desenvolvido com as
 * [x] Formulário de Cadastro com Upload de Documentos.
 * [ ] Visualização de Cartões Virtuais (Em breve).
 
-## 🛠️ Como Rodar
+## ⚙️️ Como Rodar
 
 1.  Instale as dependências:
     ```bash
@@ -32,5 +32,6 @@ Este é o módulo de interface do usuário do **BOSS BANK**, desenvolvido com as
     ng serve
     ```
 3.  Acesse: `http://localhost:4200`
+
 
 Desenvolvido por **Lucas Gabriel**
